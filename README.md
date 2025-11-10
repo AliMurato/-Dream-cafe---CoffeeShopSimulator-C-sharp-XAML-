@@ -93,7 +93,7 @@ and replace it with your desired file name.
 ## Music Credit
 
 Background music:
-“""Fade Out""” — Squire Tuck
+“**Fade Out**” — Squire Tuck
 
 
 Source: Free Music Archive (https://freemusicarchive.org/music/Squire_Tuck/Fade_Out)
@@ -110,7 +110,7 @@ License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
 
 ## Author
 
-""Ali Khudaimuratov""
+**Ali Khudaimuratov**
 
 Bachelor student, Czech University of Life Sciences (CZU FEM)
 
