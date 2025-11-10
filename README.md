@@ -120,16 +120,16 @@ Course: Component Software Engineering
 ## Screenshots
 
 ### Main Menu
-![Main Menu](/Screenshots/Menu.png)
+![Main Menu](/Screenshots/Menu.PNG)
 
 ### Instruction
-![Results Screen](/Screenshots/Instruction.png)
+![Results Screen](/Screenshots/Instruction.PNG)
 
 ### Gameplay
-![Gameplay](/Screenshots/GamePlay.png)
+![Gameplay](/Screenshots/GamePlay.PNG)
 
 ### Results
-![Results Screen](/Screenshots/Results.png)
+![Results Screen](/Screenshots/Results.PNG)
 
 ### History
-![Results Screen](/Screenshots/History.png)
+![Results Screen](/Screenshots/History.PNG)
