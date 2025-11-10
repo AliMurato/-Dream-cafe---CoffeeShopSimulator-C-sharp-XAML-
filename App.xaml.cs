@@ -11,7 +11,7 @@ namespace CoffeeShopSimulator
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             // Load and play music
-            mediaPlayer.Open(new Uri("audio/Lost_haven_shillings.mp3", UriKind.Relative));
+            mediaPlayer.Open(new Uri("Resources/Audio/Squire Tuck - Fade Out.mp3", UriKind.Relative));
             mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
             mediaPlayer.Volume = 0.5;
             mediaPlayer.Play();

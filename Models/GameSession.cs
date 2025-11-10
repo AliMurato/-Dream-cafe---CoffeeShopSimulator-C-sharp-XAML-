@@ -4,6 +4,7 @@ namespace CoffeeShopSimulator
 {
     public class GameSession
     {
+        private static readonly Random Rng = new Random();
         public int CurrentDay { get; private set; } = 0;  // Current day
         public decimal CurrentMoney { get; private set; } = 20m;  // Current money (starting the game with $20)
         public decimal TargetMoney { get; } = 100m;  // The goal amount to earn
@@ -38,7 +39,7 @@ namespace CoffeeShopSimulator
                 // Continue the game if there are enough funds to prepare coffee
                 CurrentMoney -= costOfCoffee;
                 CupsOfCoffeeMade = cupsOfCoffee;
-                VisitorsToday = new Random().Next(2, 11);
+                VisitorsToday = Rng.Next(2, 11);
                 CupsOfCoffeeSold = Math.Min(VisitorsToday, CupsOfCoffeeMade);
                 CurrentMoney += CupsOfCoffeeSold * PricePerCup;
                 CurrentMoney -= DailyTax;
@@ -59,60 +60,61 @@ namespace CoffeeShopSimulator
             }
         }
 
+        public enum EndingType
+        {
+            A,
+            B,
+            C
+        }
+
+        public EndingType GetEnding() // Determine the ending
+        {
+            if (CurrentMoney >= TargetMoney)
+                return EndingType.A; // "A" for a successful ending
+
+            if (CurrentMoney >= 50)
+                return EndingType.B; // "B" for a neutral ending
+
+            return EndingType.C; // "C" for an unsuccessful ending
+        }
+
         public string CheckEndGame()
         {
             // Check end game conditions and return the corresponding ending
-            if (CurrentMoney >= TargetMoney)
+            switch (GetEnding())
             {
-                return "ENDING A | Congratulations! You've reached your goal! A well-deserved bonus and perhaps a promotion await you!";  // ending A
-            }
-            else if (CurrentMoney >= 50)
-            {
-                return "ENDING B | You didn't reach the goal, but you're still in business. Maybe you can persuade the boss to give you more time.";  // ending B
-            }
-            else
-            {
-                return "ENDING C | Unfortunately, it didn't work out. At best, you'll lose your bonus, and at worst...";  // ending C
+                case EndingType.A:
+                    return "ENDING A | Congratulations! You've reached your goal! A well-deserved bonus and perhaps a promotion await you!";
+                case EndingType.B:
+                    return "ENDING B | You didn't reach the goal, but you're still in business. Maybe you can persuade the boss to give you more time.";
+                default:
+                    return "ENDING C | Unfortunately, it didn't work out. At best, you'll lose your bonus, and at worst...";
             }
         }
 
         public string GetEndingLetter()
         {
-            // Logic to determine the ending letter (needed in the future for saving to the table)
-            if (CurrentMoney >= TargetMoney)
-            {
-                return "A"; // "A" for a successful ending
-            }
-            else if (CurrentMoney >= 50)
-            {
-                return "B"; // "B" for a neutral ending
-            }
-            else
-            {
-                return "C"; // "C" for an unsuccessful ending
-            }
+            // the ending letter (needed in the future for saving to the table)
+            return GetEnding().ToString();
         }
 
         public string GetAikoText()
         {
             // Determine the ending and return the corresponding text
-            if (CurrentMoney >= TargetMoney)
+            switch (GetEnding())
             {
-                return "Aiko: Congratulations! We've achieved amazing results, and now our coffeehouse is one of the best in town. " +
-                    "Your efforts and decisions have led us to this success. " +
-                    "I wholeheartedly thank you for your hard work and belief in our dream!";  // Aiko's words for ending A
-            }
-            else if (CurrentMoney >= 50)
-            {
-                return "Aiko: Not bad work! We didn't reach our main goal, but you did everything possible, and our coffeehouse continues to operate. " +
-                    "New days and new opportunities for success await us ahead. " +
-                    "Let's not rest on our laurels!";  // Aiko's words for ending B
-            }
-            else
-            {
-                return "Aiko: Unfortunately, we failed to reach the goal, and now we are facing serious difficulties. " +
-                    "I know you put in a lot of effort, and I'm sorry that things turned out this way. But don't lose hope! " +
-                    "Every experience is a step towards future victories. Thank you for being with us...";  // Aiko's words for ending C
+                case EndingType.A:
+                    return "Aiko: Congratulations! We've achieved amazing results, and now our coffeehouse is one of the best in town. " +
+                           "Your efforts and decisions have led us to this success. " +
+                           "I wholeheartedly thank you for your hard work and belief in our dream!"; // Aiko's words for ending A
+                case EndingType.B:
+                    return "Aiko: Not bad work! We didn't reach our main goal, but you did everything possible, and our coffeehouse continues to operate. " +
+                           "New days and new opportunities for success await us ahead. " +
+                           "Let's not rest on our laurels!"; // Aiko's words for ending B
+                default:
+                    return "Aiko: Unfortunately, we failed to reach the goal, and now we are facing serious difficulties. " +
+                           "I know you put in a lot of effort, and I'm sorry that things turned out this way. But don't lose hope! " +
+                           "Every experience is a step towards future victories. Thank you for being with us..."; // Aiko's words for ending C
             }
         }
 

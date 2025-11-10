@@ -7,7 +7,7 @@
         <!-- Background of the main window -->
         <Grid.Background>
             <ImageBrush x:Name="menu_background_PNG" 
-                        ImageSource="pack://application:,,,/images/menu_background.PNG"/>
+                        ImageSource="pack://application:,,,/Resources/Images/menu_background.PNG"/>
         </Grid.Background>
 
         <!-- Main menu with buttons -->
@@ -40,7 +40,7 @@
 
         <!-- Game instructions -->
         <StackPanel x:Name="InstructionPanel" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed">
-            <Image x:Name="InstructionImage" Source="pack://application:,,,/images/instruction.PNG" Height="450" Width="800"/>
+            <Image x:Name="InstructionImage" Source="pack://application:,,,/Resources/Images/instruction.PNG" Height="450" Width="800"/>
             <Button Content="- Back to Menu -" Height="30" Margin="10" Width="500" FontSize="18" Click="BackToMenu_Click"/>
         </StackPanel>
 
@@ -48,12 +48,26 @@
         <StackPanel Margin="0,0,104,0" HorizontalAlignment ="Right" VerticalAlignment="Bottom" Height="98" Width="465">
             <TextBlock x:Name="NicknameText" Text="About the project:" TextAlignment="Left"
                 Foreground="White" FontSize="18"/>
-            <TextBlock x:Name="DateText" Text=" | Game: 'Dream Cafe' (management simulator)" TextAlignment="Left"
+            <TextBlock x:Name="DateText" Text=" | Game: 'Dream Cafe' – a simple management simulator" TextAlignment="Left"
                 Foreground="White" FontSize="18"/>
             <TextBlock x:Name="EndingText" Text=" | Student: Ali Khudaimuratov (2nd year)" TextAlignment="Left"
                 Foreground="White" FontSize="18"/>
             <TextBlock x:Name="MoneyText" Text=" | CZU FEM, Informatics, Component Software Engineering" TextAlignment="Left"
                  Foreground="White" FontSize="18"/>
         </StackPanel>
+
+        <!-- Music credit -->
+        <TextBlock x:Name="MusicCredit"
+                   Text="🎵 Music: “Fade Out” — Squire Tuck (CC BY)"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="10,10,0,0"
+                   Foreground="White"
+                   FontSize="14"
+                   Opacity="0.8">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="2" BlurRadius="4" Opacity="0.8"/>
+            </TextBlock.Effect>
+        </TextBlock>
     </Grid>
 </Window>

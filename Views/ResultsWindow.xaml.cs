@@ -6,15 +6,15 @@ namespace CoffeeShopSimulator
 {
     public partial class ResultsWindow : Window
     {
-        public ResultsWindow(string nickname, DateTime date, string ending, decimal money)
+        public ResultsWindow(GameRecord record)
         {
             InitializeComponent();
 
             // Set the values of the game record text blocks
-            NicknameText.Text += nickname;
-            DateText.Text += date.ToShortDateString();
-            EndingText.Text += ending;
-            MoneyText.Text += money.ToString() + "$";
+            NicknameText.Text += record.Nickname;
+            DateText.Text += record.Date.ToShortDateString();
+            EndingText.Text += record.Ending;
+            MoneyText.Text += record.Money.ToString() + "$";
 
             // Add event handler for key press
             this.KeyDown += ResultsWindow_KeyDown;

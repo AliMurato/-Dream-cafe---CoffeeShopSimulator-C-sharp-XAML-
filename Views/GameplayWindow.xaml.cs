@@ -243,12 +243,14 @@ namespace CoffeeShopSimulator
             List<GameRecord> existingRecords = gameDataService.LoadRecords();
             int newId = existingRecords.Any() ? existingRecords.Max(r => r.Id) + 1 : 1;
 
+            var now = DateTime.Now;
+
             // Create a new game session record
             var gameRecord = new GameRecord(
                 newId, // Unique record identifier
                 userNickname,
                 gameSession.GetEndingLetter(), // Ending letter
-                DateTime.Now, // Current date
+                now, // Current date
                 gameSession.CurrentMoney // Amount of money at the time of game end
             );
 
@@ -259,7 +261,7 @@ namespace CoffeeShopSimulator
             this.Close();
 
             // Display the results window
-            ResultsWindow resultsWindow = new ResultsWindow(userNickname, DateTime.Now, gameSession.GetEndingLetter(), gameSession.CurrentMoney);
+            ResultsWindow resultsWindow = new ResultsWindow(gameRecord);
             resultsWindow.ShowDialog();
         }
     }

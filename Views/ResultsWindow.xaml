@@ -9,7 +9,7 @@
         <!-- Window background -->
         <Grid.Background>
             <ImageBrush x:Name="final_background_PNG" 
-                    ImageSource="pack://application:,,,/images/final_background.PNG"/>
+                    ImageSource="pack://application:,,,/Resources/Images/final_background.PNG"/>
         </Grid.Background>
 
         <!-- Game record -->
@@ -29,6 +29,19 @@
             <TextBlock x:Name="pressEnter" Text="Press enter to go to the menu ... " TextAlignment="Left"
                 Foreground="White" FontSize="25 "/>
         </StackPanel>
+        <!-- Music credit -->
+        <TextBlock x:Name="MusicCredit"
+           Text="🎵 Music: “Fade Out” — Squire Tuck (CC BY)"
+           HorizontalAlignment="Left"
+           VerticalAlignment="Top"
+           Margin="10,10,0,0"
+           Foreground="White"
+           FontSize="14"
+           Opacity="0.8">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black" Direction="320" ShadowDepth="2" BlurRadius="4" Opacity="0.8"/>
+            </TextBlock.Effect>
+        </TextBlock>
     </Grid>
 </Window>
 

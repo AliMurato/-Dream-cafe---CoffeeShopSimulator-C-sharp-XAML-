@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Globalization;
 
 namespace CoffeeShopSimulator
 {
@@ -25,8 +26,8 @@ namespace CoffeeShopSimulator
                             int.Parse(parts[0]),
                             parts[1],
                             parts[2],
-                            DateTime.Parse(parts[3]),
-                            decimal.Parse(parts[4])));
+                            DateTime.Parse(parts[3], null, DateTimeStyles.RoundtripKind),
+                            decimal.Parse(parts[4], CultureInfo.InvariantCulture)));
                     }
                 }
             }
@@ -36,7 +37,12 @@ namespace CoffeeShopSimulator
         // Save the record to the file
         public void SaveRecord(GameRecord record)
         {
-            var recordLine = $"{record.Id}|{record.Nickname}|{record.Ending}|{record.Date}|{record.Money}";
+            var recordLine = string.Join("|",
+                record.Id,
+                record.Nickname,
+                record.Ending,
+                record.Date.ToString("O"), // ISO 8601
+                record.Money.ToString(CultureInfo.InvariantCulture));
             // Append the record line to the file
             File.AppendAllText(filePath, recordLine + Environment.NewLine);
         }
